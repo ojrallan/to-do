@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div>
-      <h1>To-Do List</h1>
+      <h1 className="text-red-400">To-Do List</h1>
       <input value={title} onChange={(e) => setTitle(e.target.value)} />
       <button onClick={addTodo}>Add</button>
 
