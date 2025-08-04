@@ -47,13 +47,13 @@ app.delete("/todos/:id", async (req, res) => {
 //Put route
 app.put("/todos/:id", async (req, res) => {
   const id = req.params.id;
-  const { title, completed } = req.body;
+  const { completed } = req.body;
 
   try {
     //Update title and/or completed status
     const result = await pool.query(
-      "UPDATE todos SET title = COALESCE($1, title), completed = COALESCE($2, completed) WHERE id = $3 RETURNING *",
-      [title, completed, id]
+      "UPDATE todos SET completed = COALESCE($1, completed) WHERE id = $2 RETURNING *",
+      [completed, id]
     );
 
     if (result.rowCount === 0) {
