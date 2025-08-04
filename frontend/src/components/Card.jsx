@@ -30,8 +30,17 @@ const Card = ({ todo }) => {
   };
 
   return (
-    <div className="w-[200px] text-white bg-blue-950 px-2 mt-2 rounded-sm flex justify-between items-center h-12">
-      <h1>{todo.title}</h1>
+    <div className="w-[200px] px-2 mt-2 rounded-sm flex justify-between items-center h-fit">
+      <div className="flex items-center justify-center gap-2 h-full cursor-pointer">
+        <div className="h-1 w-1 flex rounded-full bg-black"></div>
+        <h1
+          className={`cursor-pointer ${todo.completed ? "line-through" : null}`}
+          onClick={() => handleStatusChange(todo.id, todo.completed)}
+        >
+          {todo.title}
+        </h1>
+      </div>
+
       <div className="flex gap-2">
         {/* Bin icon */}
         <svg
@@ -51,7 +60,7 @@ const Card = ({ todo }) => {
         </svg>
 
         {/* Check Mark */}
-        <svg
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -67,7 +76,7 @@ const Card = ({ todo }) => {
             strokeLinejoin="round"
             d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
           />
-        </svg>
+        </svg> */}
       </div>
     </div>
   );

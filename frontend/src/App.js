@@ -7,7 +7,40 @@ function App() {
   const { todos, setTodos } = useContext(TodoContext);
   const [title, setTitle] = useState("");
 
-  console.log(todos);
+  function formatDate(date = new Date()) {
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const dayName = days[date.getDay()];
+    const dd = String(date.getDate()).padStart(2, "0");
+    const mm = months[date.getMonth()];
+    const yyyy = date.getFullYear();
+
+    return `${dayName}, ${dd}-${mm}-${yyyy}`;
+  }
+
+  const today = formatDate();
 
   const addTodo = () => {
     //Ensure valid content is being submitted
@@ -24,11 +57,12 @@ function App() {
 
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-stone-300">
-      <div className="w-[400px] h-auto min-h-[200px] bg-white py-5 rounded-sm">
-        <h1 className="text-red-400 text-center text-2xl">
-          <i>To-Do List </i>
+      <div className="w-[400px] h-auto min-h-[400px] bg-white py-5 rounded-sm">
+        <h1 className="text-red-400 text-center text-3xl">
+          <i>Today's Tasks </i>
         </h1>
-        <div className="mx-auto w-fit flex gap-1">
+        <p className="text-center text-xs mt-1">{`(${today})`}</p>
+        <div className="mx-auto w-fit flex gap-1 mt-5">
           <input
             className="border border-gray-300"
             value={title}
