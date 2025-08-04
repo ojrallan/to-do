@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import Card from "./components/Card";
 import axios from "axios";
 import { TodoContext } from "./context/TodoContext";
+import Completion from "./components/Completion";
 
 function App() {
   const { todos, setTodos } = useContext(TodoContext);
@@ -46,6 +47,11 @@ function App() {
     //Ensure valid content is being submitted
     if (title === "" || title.length < 4) {
       window.alert("Please enter a valid task");
+      setTitle("");
+      return;
+    } else if (title.length > 20) {
+      window.alert("Make the task name more concise, please");
+      setTitle("");
       return;
     } else {
       axios.post("http://localhost:5000/todos", { title }).then((res) => {
@@ -76,13 +82,15 @@ function App() {
           </button>
         </div>
 
-        <div className="w-full flex justify-center items-center">
-          <ul>
+        <div className="w-full flex justify-center items-center ">
+          <div className="h-[200px] w-[230px] overflow-auto thin-scrollbar shadow-inner mt-2 bg-stone-100">
             {todos.map((todo) => (
               <Card key={todo.id} todo={todo} />
             ))}
-          </ul>
+          </div>
         </div>
+        {/* Percentage completed */}
+        <Completion/>
       </div>
     </div>
   );
