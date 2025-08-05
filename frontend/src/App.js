@@ -54,10 +54,14 @@ function App() {
       setTitle("");
       return;
     } else {
-      axios.post("http://localhost:5000/todos", { title }).then((res) => {
-        setTodos([...todos, res.data]);
-        setTitle("");
-      });
+      const formattedTitle =
+        title.charAt(0).toUpperCase() + title.slice(1).toLowerCase();
+      axios
+        .post("http://localhost:5000/todos", { title: formattedTitle })
+        .then((res) => {
+          setTodos([...todos, res.data]);
+          setTitle("");
+        });
     }
   };
 
@@ -90,7 +94,7 @@ function App() {
           </div>
         </div>
         {/*Display Percentage completed */}
-        <Completion/>
+        <Completion />
       </div>
     </div>
   );
