@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import Card from "./components/Card";
+import Task from "./components/Task";
 import axios from "axios";
 import { TodoContext } from "./context/TodoContext";
 import Completion from "./components/Completion";
@@ -64,7 +64,7 @@ function App() {
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-stone-300">
       <div className="w-[400px] h-auto min-h-[400px] bg-white py-5 rounded-sm">
-        <h1 className="text-red-400 text-center text-3xl">
+        <h1 className="text-orange-600 text-center text-3xl">
           <i>Today's Tasks </i>
         </h1>
         <p className="text-center text-xs mt-1">{`(${today})`}</p>
@@ -85,11 +85,11 @@ function App() {
         <div className="w-full flex justify-center items-center ">
           <div className="h-[200px] w-[230px] overflow-auto thin-scrollbar shadow-inner mt-2 bg-stone-100">
             {todos.map((todo) => (
-              <Card key={todo.id} todo={todo} />
+              <Task key={todo.id} todo={todo} />
             ))}
           </div>
         </div>
-        {/* Percentage completed */}
+        {/*Display Percentage completed */}
         <Completion/>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { TodoContext } from "../context/TodoContext";
 import axios from "axios";
 
-const Card = ({ todo }) => {
+const Task = ({ todo }) => {
   const { setTodos } = useContext(TodoContext);
 
   const handleDelete = async (id) => {
@@ -34,7 +34,7 @@ const Card = ({ todo }) => {
       <div className="flex items-center justify-center gap-2 h-full cursor-pointer">
         <div className="h-1 w-1 flex rounded-full bg-black"></div>
         <h1
-          className={`cursor-pointer ${todo.completed ? "line-through" : null}`}
+          className={`cursor-pointer select-none ${todo.completed ? "line-through" : null}`}
           onClick={() => handleStatusChange(todo.id, todo.completed)}
         >
           {todo.title}
@@ -82,4 +82,4 @@ const Card = ({ todo }) => {
   );
 };
 
-export default Card;
+export default Task;
