@@ -43,7 +43,8 @@ function App() {
 
   const today = formatDate();
 
-  const addTodo = () => {
+  const addTodo = (e) => {
+    e.preventDefault();
     //Ensure valid content is being submitted
     if (title === "" || title.length < 4) {
       window.alert("Please enter a valid task");
@@ -72,18 +73,20 @@ function App() {
           <i>Today's Tasks </i>
         </h1>
         <p className="text-center text-xs mt-1">{`(${today})`}</p>
-        <div className="mx-auto w-fit flex gap-1 mt-5">
-          <input
-            className="border border-gray-300"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <button
-            className="bg-green-400 rounded-sm py-1 px-3"
-            onClick={addTodo}
-          >
-            Add
-          </button>
+        <div className="mx-auto w-fit mt-5">
+          <form className="flex gap-2">
+            <input
+              className="border border-gray-300 px-1"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <button
+              className="bg-green-400 rounded-sm py-1 px-3"
+              onClick={addTodo}
+            >
+              Add
+            </button>
+          </form>
         </div>
 
         <div className="w-full flex justify-center items-center ">
